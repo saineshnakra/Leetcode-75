@@ -1,3 +1,3 @@
-# Leetcode-75
+# Leetcode-75 and more
 I will be posting my solutions and explanations for every question in the "Leetcode 75" study plan. I will be using C++
 Study plan link : https://leetcode.com/studyplan/leetcode-75/
