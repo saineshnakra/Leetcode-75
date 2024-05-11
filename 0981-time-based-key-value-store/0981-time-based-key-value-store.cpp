@@ -14,14 +14,13 @@ public:
         if(m.find(key)==m.end()){
             return res;
         }
-        auto list = m[key];
         int low = 0;
-        int high = list.size()-1;
+        int high = m[key].size()-1;
 
         while(low<=high){
             int mid = (low+high)/2;
-            if(list[mid].second<=timestamp){
-                res = list[mid].first;
+            if(m[key][mid].second<=timestamp){
+                res = m[key][mid].first;
                 low = mid+1;
             }
             else{
