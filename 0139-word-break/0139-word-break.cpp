@@ -11,6 +11,7 @@ public:
             for(int j = 0;j<i;j++){
                 if(dp[j]&&m[s.substr(j,i-j)]){
                     dp[i] = true;
+                    continue;
                 }
             }
         }
