@@ -23,8 +23,15 @@ public:
                 res += trim_s[k];
                 k++;
             }
-            unsigned long ans = 0;
+            cout<<res;
+            unsigned long long ans = 0;
             for(int i = 0;i<res.size();i++){
+                if (ans >= pow(2,31) and sign=='-'){   
+                ans = pow(2,31);
+            } 
+            else if (ans >= pow(2,31)){
+            ans = pow(2,31)-1;
+            }
                 ans = ans*10 + (res[i]-'0');
             }
             if (ans >= pow(2,31) and sign=='-'){   
@@ -33,7 +40,6 @@ public:
             else if (ans >= pow(2,31)){
             ans = pow(2,31)-1;
             } 
-
             return sign=='+'||sign=='n'?ans:-ans;
            
     }
