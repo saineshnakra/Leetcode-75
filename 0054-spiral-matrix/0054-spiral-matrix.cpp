@@ -9,7 +9,7 @@ public:
         int n = matrix[0].size() * matrix.size();
         while (res.size() < n) {
             int x = start_i;
-            int y = start_j == 0 ? start_j : start_j + 1;
+            int y = start_j;
             while (y <= end_j) {
                 res.push_back(matrix[x][y]);
                 y++;
@@ -35,10 +35,16 @@ public:
             if (res.size() >= n) {
                 return res;
             }
+            x--;
             y++;
             start_i++;
             end_j--;
             end_i--;
+            start_j++;
+            while(x>=start_i){
+                res.push_back(matrix[x][y]);
+                x--;
+            }
         }
         return res;
     }
