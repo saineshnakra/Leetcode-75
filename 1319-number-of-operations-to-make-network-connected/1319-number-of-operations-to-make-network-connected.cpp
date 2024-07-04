@@ -2,7 +2,6 @@ class Solution {
 public:
     vector<int> disjoint_set;
     
-    // Initialize disjoint set and rank
     void init(int n) {
         disjoint_set.resize(n);
         for (int i = 0; i < n; ++i) {
@@ -12,7 +11,7 @@ public:
     
     int find(int v) {
         if (disjoint_set[v] != v) {
-            disjoint_set[v] = find(disjoint_set[v]); // Path compression
+            disjoint_set[v] = find(disjoint_set[v]); 
         }
         return disjoint_set[v];
     }
@@ -25,13 +24,11 @@ public:
         int rootx = find(x);
         int rooty = find(y);
         if (rootx != rooty) {
-            disjoint_set[rooty] = rootx; // Union operation
+            disjoint_set[rooty] = rootx;
         }
     }
 
     int makeConnected(int n, vector<vector<int>>& connections) {
-        if (connections.size() < n - 1) return -1; // Not enough cables
-        
         init(n);
 
         int cables = 0;
