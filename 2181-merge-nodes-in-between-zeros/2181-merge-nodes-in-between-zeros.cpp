@@ -27,7 +27,7 @@ public:
         flag = !flag;
         }
         else{
-res->next = new ListNode(temp);
+        res->next = new ListNode(temp);
         res = res->next;
         }
         curr = curr->next;
