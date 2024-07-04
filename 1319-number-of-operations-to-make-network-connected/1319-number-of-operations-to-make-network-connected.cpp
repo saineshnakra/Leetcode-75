@@ -1,39 +1,54 @@
 class Solution {
 public:
     vector<int> disjoint_set;
-    int find(int v) { return disjoint_set[v]; }
-    bool connected(int x, int y) { return find(x) == find(y); }
+    
+    // Initialize disjoint set and rank
+    void init(int n) {
+        disjoint_set.resize(n);
+        for (int i = 0; i < n; ++i) {
+            disjoint_set[i] = i;
+        }
+    }
+    
+    int find(int v) {
+        if (disjoint_set[v] != v) {
+            disjoint_set[v] = find(disjoint_set[v]); // Path compression
+        }
+        return disjoint_set[v];
+    }
+
+    bool connected(int x, int y) {
+        return find(x) == find(y);
+    }
+
     void un(int x, int y) {
         int rootx = find(x);
         int rooty = find(y);
-        if (rootx == rooty) {
-            return;
-        }
-        for (int i = 0; i < disjoint_set.size(); i++) {
-            if (disjoint_set[i] == rooty) {
-                disjoint_set[i] = rootx;
-            }
+        if (rootx != rooty) {
+            disjoint_set[rooty] = rootx; // Union operation
         }
     }
+
     int makeConnected(int n, vector<vector<int>>& connections) {
+        if (connections.size() < n - 1) return -1; // Not enough cables
+        
+        init(n);
+
         int cables = 0;
-        for (int i = 0; i < n; i++) {
-            disjoint_set.push_back(i);
-        }
-        for (int i = 0; i < connections.size(); i++) {
-            if (!connected(connections[i][0],connections[i][1])){
-                un(connections[i][0],connections[i][1]);
-            }
-            else{
+        for (const auto& connection : connections) {
+            if (!connected(connection[0], connection[1])) {
+                un(connection[0], connection[1]);
+            } else {
                 cables++;
             }
         }
-        set<int>s;
-        for(int i = 0;i<disjoint_set.size();i++){
-           cout<<disjoint_set[i]<<" ";
-           s.insert(disjoint_set[i]);
+
+        set<int> unique_parents;
+        for (int i = 0; i < n; ++i) {
+            unique_parents.insert(find(i));
         }
 
-    return cables>=s.size()-1?s.size()-1:-1;
+        int components = unique_parents.size();
+        return (cables >= components - 1) ? components - 1 : -1;
     }
 };
