@@ -30,7 +30,6 @@ public:
 
     int makeConnected(int n, vector<vector<int>>& connections) {
         init(n);
-
         int cables = 0;
         for (const auto& connection : connections) {
             if (!connected(connection[0], connection[1])) {
