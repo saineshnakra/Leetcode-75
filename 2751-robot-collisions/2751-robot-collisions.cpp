@@ -1,4 +1,5 @@
 class Solution {
+    public:
   vector<int> survivedRobotsHealths(vector<int>& positions, vector<int>& healths, string directions) {
         // Step 1: Create a vector of indices and sort it based on positions
         int n = positions.size();
