@@ -1,22 +1,22 @@
 class Solution {
 public:
-    void dfs(vector<bool>&visited, vector<vector<int>>& rooms, int curr){
-        visited[curr]= true;
-        for(auto trav: rooms[curr]){
-            if(!visited[trav]){
-                dfs(visited,rooms, trav);
+    void dfs(vector<bool>& visited, vector<vector<int>>& rooms, int curr){
+        visited[curr] = true;
+        for(int room: rooms[curr]){
+            if(!visited[room]){
+                dfs(visited, rooms, room);
             }
         }
-        return;
     }
     bool canVisitAllRooms(vector<vector<int>>& rooms) {
-        vector<bool>visited(rooms.size(),false);
-        dfs(visited, rooms, 0);
-        for(int i = 0;i<visited.size();i++){
-            if(!visited[i]){
-                return false;
-            }
+       int n = rooms.size();
+       vector<bool>visited(n,false);
+       dfs(visited, rooms, 0); 
+       for(int i= 0;i<n;i++){
+        if(!visited[i]){
+            return false;
         }
-        return true;
+       }
+       return true;
     }
 };
