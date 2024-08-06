@@ -19,15 +19,15 @@ public:
         sort(frequencies.rbegin(), frequencies.rend());
         
         int count = 1;
-        int count_times = 0;
+        int assigned = 0;
         
         // Calculate minimum pushes
         for (int freq : frequencies) {
-            count_times++;
-            if (count_times % 8 == 0) {
+            res += count * freq;
+            assigned++;
+            if (assigned % 8 == 0) {
                 count++;
             }
-            res += count * freq;
         }
         
         return res;
