@@ -1,6 +1,6 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        mini = 1001
+        mini = 10001
         res = 0
         for curr in prices:
             if mini>curr:
