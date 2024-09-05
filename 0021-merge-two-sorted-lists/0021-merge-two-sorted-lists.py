@@ -9,14 +9,13 @@ class Solution:
         while list1 and list2:
             if list1.val<list2.val:
                 curr.next = list1
-                list1, curr = list1.next, curr.next
-            else:
+                curr, list1 = curr.next , list1.next
+            else: 
                 curr.next = list2
-                list2, curr = list2.next, curr.next
+                curr, list2 = curr.next, list2.next
         if list1 or list2:
             curr.next = list1 if list1 else list2
-        return dummy.next
-                
 
-        
+        return dummy.next 
+
         
