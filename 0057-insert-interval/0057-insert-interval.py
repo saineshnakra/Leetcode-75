@@ -2,7 +2,7 @@ class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
         new_list = []
         i = 0
-        while intervals[i][1]<newInterval[0]:
+        while i<len(intervals) and intervals[i][1]<newInterval[0]:
             new_list.append(intervals[i])
             i+=1
 
